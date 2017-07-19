@@ -1,0 +1,74 @@
+body {  /* Aufgabe a */
+    font-color: #333;
+    background-color: #eee;
+    font-family: Helvetica, Arial, Geneva, sans-serif;
+    font-size: 1em/1.2;
+}
+
+.container {  /* Aufgabe a */
+    width: 50em;
+    margin: auto;
+    background-color: #fff;
+}
+
+.header {  /* Aufgabe b */
+    color: #fff;
+    background-color: #999;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 1.25em;
+    padding-left: 1.25em;
+}
+
+.header-heading {  /* Aufgabe b */
+    margin: 0;
+}
+
+.nav {  /* Aufgabe c */
+    padding: 0;
+    margin: 0;
+}
+
+.nav li {  /* Aufgabe c */
+    display: inline;
+    list-style: none;
+    margin-left: 1em;  /* not mentioned in exercise */
+}
+
+.nav-bar {  /* Aufgabe c */
+    padding: 0;
+    background-color: #000;
+    padding-left: 1.25em;  /* not mentioned in exercise */
+    padding-right: 1.25em;  /* not mentioned in exercise */
+    padding-top: 1em;  /* not mentioned in exercise */
+    padding-bottom: 1em;  /* not mentioned in exercise */
+}
+
+.nav a {  /* Aufgabe c */
+    color: #fff;
+    text-decoration: none;  /* not mentioned in exercise */
+}
+
+.nav a:hover {  /* Aufgabe c */
+    color: green;
+}
+
+.content {  /* Aufgabe d */
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.main {  /* Aufgabe d */
+  /* not mentioned in exercise */
+}
+
+.footer {  /* Aufgabe e */
+    color: #fff;
+    background-color: #000;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 1.25em;
+    padding-left: 1.25em;
+}
