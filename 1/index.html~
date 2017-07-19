@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Übungstest</title>        
+    </head>
+
+    <body>
+        <h1>Dies ist eine Übungsseite</h1>
+
+        <table>
+            <tr>
+                <td>Bild</td>
+                <td>Beschreibung</td>
+            </tr>
+            <tr>
+                <td><img src="img/Ouroboros.jpeg" width="120" height="120" alt="_Ouroboros"></td>
+                <td>Dies ist ein Ouroboros</td>
+            </tr>
+            <tr>
+                <td><img src="img/Ouroboros.jpeg" width="120" height="120" alt="_Ouroboros"></td>
+                <td>Dies ist ein Ouroboros</td>
+            </tr>
+        </table>
+    </body>
+</html>
