@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css"
+              href="assets/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+        <style>
+         .navbar-header {
+             float: left;
+             padding: 15px;
+             text-align: center;
+             width: 100%;
+         }
+         .navbar-brand {
+             float:none;
+         }
+        </style>
+        <title>Übung 4</title>
+
+        <script src="assets/js/ue4_logic.js"></script>
+    </head>
+
+    <body onload="getRSS();">
+        <div class="container">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-header">
+                    <a class="navbar-brand">
+                        RUB Feed Reader
+                    </a>
+                    <div id="navbar">
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="container" style="padding-top: 100px; padding-bottom: 100px;" id="content">
+            
+        </div>
+    </body>
+</html>
