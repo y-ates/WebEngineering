@@ -1,5 +1,5 @@
 body {
-    font-color: #333;
+    color: #333;
     background-color: #eee;
     font-family: Helvetica, Arial, Geneva, sans-serif;
     font-size: 1em/1.2;
@@ -13,7 +13,7 @@ body {
 
 .header {
     color: #fff;
-    background-color: #999;
+    background-color: #000;
     padding-top: 1em;
     padding-bottom: 1em;
     padding-right: 1.25em;
@@ -27,18 +27,28 @@ body {
 .content {
     padding-top: 1.25em;
     padding-bottom: 1.25em;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 10em;
+    padding-right: 10em;
 }
 
 .form {
-    
+
 }
 
 .form-group {
-    
+    text-align: left;
+    font-weight: bold;
 }
 
 .form-control {
-    
+    width: 100%;    
+}
+
+.footer {
+    background-color: #000;
+    color: #eee;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 1.25em;
+    padding-left: 1.25em;   
 }

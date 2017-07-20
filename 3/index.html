@@ -1,14 +1,93 @@
 <!DOCTYPE html>
 <html lang="de">
+    <!-- Yakup Ates -->
     <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="style.css" media="all">
+        <!--<link rel="stylesheet" type="text/css" href="assets/css/style.css"
+             media="all">  -->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
         <title>Übung 3</title>
         <div class="container">
             <div class="header">
                 <h1 class="header-heading">JavaScript Einführung</h1>
             </div>
         </div>
+
+        <script>
+         function solveEQ() {
+             var d = document.form1;
+             var volts = d.volts.value;
+             var ohms = d.ohms.value;
+             var amps = d.amps.value;
+             var watts = d.watts.value;
+
+             if (volts && amps) {  // I, U
+                 watts = amps * volts;
+                 d.watts.value = watts;
+                 d.watts.classList.add("alert-success");
+                 
+                 ohms = volts / amps;
+                 d.ohms.value = ohms;
+                 d.ohms.classList.add("alert-success");
+             } else if (volts && ohms) {  // U, R
+                 amps = volts / ohms;
+                 d.amps.value = amps;
+                 d.amps.classList.add("alert-success");
+                 
+                 watts = amps * volts;
+                 d.watts.value = watts;
+                 d.watts.classList.add("alert-success");                 
+             } else if (volts && watts) {  // P, U
+                 amps = watts / volts;
+                 d.amps.value = amps;
+                 d.amps.classList.add("alert-success");
+                 
+                 ohms = volts / amps;
+                 d.ohms.value = ohms;
+                 d.ohms.classList.add("alert-success");                 
+             } else if (amps && ohms) {  // I, R
+                 watts = amps * amps * ohms;
+                 d.watts.value = watts;
+                 d.watts.classList.add("alert-success");
+                 
+                 volts = ohms * amps;
+                 d.volts.value = volts;
+                 d.volts.classList.add("alert-success");
+             } else if (amps && watts) {  // P, I
+                 volts = watts / amps;
+                 d.volts.value = volts;
+                 d.volts.classList.add("alert-success");
+
+                 ohms = volts / amps;
+                 d.ohms.value = ohms;
+                 d.ohms.classList.add("alert-success");
+             } else if (ohms && watts) {  // P, R
+                 amps = Math.sqrt(watts * ohms);
+                 d.amps.value = amps;
+                 d.amps.classList.add("alert-success");
+                 
+                 volts = ohms * amps;
+                 d.volts.value = volts;
+                 d.volts.classList.add("alert-success");
+             }
+         }
+
+         function resetEQ() {
+             var d = document.form1;
+             
+             d.volts.value = "0.0";
+             d.volts.classList.remove("alert-success");
+             d.ohms.value = "0.0";
+             d.ohms.classList.remove("alert-success");
+             d.amps.value = "0.0";
+             d.amps.classList.remove("alert-success");
+             d.watts.value = "0.0";
+             d.watts.classList.remove("alert-success");
+         }
+        </script>
     </head>
 
     <body>
@@ -21,11 +100,34 @@
                 <form name="form1" class="form">
                     <div class="form-group">
                         <label for="volts">Volts</label>
+                        <br>
                         <input type="text" name="volts" class="form-control"
                                id="volts" placeholder="0.0">
+
+                        <label for="ohms">Ohms</label>
+                        <br>
+                        <input type="text" name="ohms" class="form-control"
+                               id="ohms" placeholder="0.0">
+
+                        <label for="amps">Amps</label>
+                        <br>
+                        <input type="text" name="amps" class="form-control"
+                               id="amps" placeholder="0.0">
+
+                        <label for="watts">Watts</label>
+                        <br>
+                        <input type="text" name="watts" class="form-control"
+                               id="watts" placeholder="0.0">
                     </div>
+                    <button type="button" name="solve"
+                            class="btn btn-success" onClick="solveEQ();">
+                        Solve
+                    </button>
+                    <button type="button" name="reset"
+                            class="btn btn-danger" onClick="resetEQ();">
+                        Reset
+                    </button>
                 </form>
-                
             </div>
         </div>
     </body>
