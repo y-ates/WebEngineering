@@ -1,0 +1,44 @@
+body {
+    font-color: #333;
+    background-color: #eee;
+    font-family: Helvetica, Arial, Geneva, sans-serif;
+    font-size: 1em/1.2;
+}
+
+.container {
+    margin: auto;
+    width: 50em;
+    background-color: #fff;
+}
+
+.header {
+    color: #fff;
+    background-color: #999;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 1.25em;
+    padding-left: 1.25em;
+}
+
+.header-heading {
+    margin: 0;
+}
+
+.content {
+    padding-top: 1.25em;
+    padding-bottom: 1.25em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.form {
+    
+}
+
+.form-group {
+    
+}
+
+.form-control {
+    
+}
