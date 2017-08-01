@@ -57,7 +57,7 @@
 		<script src="assets/js/jquery.js"></script>
         <script>
 
-		$( document ).ready(function() {
+		$(document).ready(function() {
 			build();
 		});
 
@@ -78,8 +78,17 @@
 			$(label).mouseleave(function() {
 				resetSelectedField();
 			});
+
+			$(label).click(function() {
+				hideElement(id);
+			})
         }
 
+		function hideElement(id) {
+			var elementID = "#label-"+id;
+			var hiddenElement = $(elementID).hide();
+		}
+		
 		function setSelectedField(id) {
 			var selectedField = $('#selected').text("Selecting: " + id);
 		}
