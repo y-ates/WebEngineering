@@ -1,0 +1,24 @@
+.even {
+    background-color: #EEEEEE;
+}
+
+th.asc {
+/*    background-image: url(./sort_asc.gif); */
+    background-color: #CCCCFF;
+}
+th.desc {
+/*    background-image: url(./sort_desc.gif); */
+    background-color: #CCCCFF;
+}
+
+th {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 20px;
+    text-align: left;
+}
+
+table#sortable {
+    margin: auto;
+}
