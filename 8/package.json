@@ -1,0 +1,20 @@
+{
+  "name": "ue8",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "jade": "^1.11.0",
+    "request": "^2.81.0",
+    "sequelize": "^3.30.4",
+    "sqlite3": "^3.1.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Infbi",
+  "license": "MIT",
+  "description": ""
+}

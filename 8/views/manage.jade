@@ -1,0 +1,61 @@
+extends template
+
+block headinclude
+    script(src='/js/comments.js')
+
+block content
+    div(class='container' style='width: 600px !important; padding-top: 50px;')
+        div#content
+            form(method='post', action='/addmovie')
+                p Add a movie:
+                table
+                    tbody
+                        tr                    
+                            td
+                                input(type='text', placeholder='Title', name='title')
+                            td
+                                input(type='text', placeholder='Genre', name='genre')
+                            td
+                                input(type='text', placeholder='Year', name='year')
+                            td
+                                select(name='rating')
+                                    option 1
+                                    option 2
+                                    option 3
+                                    option 4
+                                    option 5
+                        tr
+                            td
+                                input(type='submit', name='submit')
+            form(method='post', action='/addactor')
+                p Add an actor:
+                table
+                    tbody
+                        tr                    
+                            td
+                                input(type='text', placeholder='First name', name='firstname')
+                            td
+                                input(type='text', placeholder='Last name', name='lastname')
+                        tr
+                            td
+                                input(type='submit', name='submit')
+            form(method='post', action='/assignactormovie')
+                p Assign actor to movie:
+                table
+                    tbody
+                        tr                    
+                            td
+                                select(name='movieid')
+                                    each movie in movies
+                                        if movie.title
+                                            option(value=movie.id)=movie.title
+                            td
+                                select(name='actorid')
+                                    each actor in actors
+                                        if actor.firstName
+                                            option(value=actor.id)=(actor.firstName + ' ' + actor.lastName)
+                        tr
+                            td
+                                input(type='submit', name='submit')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(src='/js/comments.js')

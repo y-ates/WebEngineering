@@ -1,0 +1,46 @@
+extends template
+
+block headinclude
+    script(src='/js/comments.js')
+
+block content
+    div(class='container' style='width: 600px !important; padding-top: 50px;')
+        div#content
+            table(width='550')
+                thead
+                    tr
+                        th(colspan='4', style='text-align: center;') Movies
+                    tr
+                        th Title
+                        th Genre
+                        th Year
+                        th Rating
+                        th Actors
+                tbody
+                    each movie in movies
+                        if movie.title
+                            tr
+                                td= movie.title
+                                td= movie.genre
+                                td= movie.year
+                                td= movie.rating
+                                td
+                                    if movie.actors
+                                        each actor in movie.actors
+                                            span=(actor.firstName + ' ' + actor.lastName)
+                                            br
+            table(width='550')
+                thead
+                    tr
+                        th(colspan='4', style='text-align: center;') Actors
+                    tr
+                        th First name
+                        th Last name
+                tbody
+                    each actor in actors
+                        if actor.firstName
+                            tr
+                                td= actor.firstName
+                                td= actor.lastName
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(src='/js/comments.js')
