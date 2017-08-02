@@ -9,6 +9,11 @@ var sortable = {
         sortable.onReady();
     },
     replaceSpecials: function(str) {
+		str = str.replace(new RegExp('ä', 'g'), 'a');
+		str = str.replace(new RegExp('ö', 'g'), 'o');
+		str = str.replace(new RegExp('ü', 'g'), 'u');
+		str = str.replace(new RegExp('ß', 'g'), 'ss');
+
         return str;
     },
     // call this function if a th is clicked. $this is supposed to be the th element
