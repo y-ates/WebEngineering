@@ -8,3 +8,4 @@ npm install body-parser --save
 npm install request --save
 npm install sequelize --save
 npm install sqlite3 --save
+npm install jade --save

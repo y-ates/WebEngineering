@@ -37,6 +37,14 @@ sequelize.sync({ force: false });
 /* User-Application logic entry point */
 
 /* --- get index "/" --- */
+app.use('/', function(req, res){
+	var movies = ['test1', 'test2'];
+	var actors = ['test3', 'test4'];
+    res.render('index.jade', {
+		"movies": movies,
+		"actors": actors
+	});
+});
 
 /* --- get manage page "/manage" --- */
 
