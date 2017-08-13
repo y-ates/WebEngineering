@@ -10,76 +10,62 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
 if (app.get('env') === 'development') {
-  app.locals.pretty = true;
+	app.locals.pretty = true;
 }
 
 var sequelize = new Sequelize('movies', null, null, {
-  host: 'localhost',
-  dialect: 'sqlite',
+	host: 'localhost',
+	dialect: 'sqlite',
 
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  },
-  storage: 'db/movies.sqlite'
+	pool: {
+		max: 5,
+		min: 0,
+		idle: 10000
+	},
+	storage: 'db/movies.sqlite'
 });
 
 /* --- Define Movie Model --- */
-const Movie = sequelize.define('movies', {
-	title:  Sequelize.STRING,
-	genre:  Sequelize.STRING,
-	year:   Sequelize.DATE,
-	rating: Sequelize.INTEGER
+Movie = sequelize.define('movies', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    title:  Sequelize.STRING,
+    genre:  Sequelize.STRING,
+    year:   Sequelize.DATE,
+    rating: Sequelize.INTEGER
 });
 
-const movie = Movie
-	  .build({
-		  title: 'Matrix',
-		  genre: 'Action',
-		  year: new Date(1999, 3, 2),
-		  rating: 9
-	  });
-
+var movie = Movie
+    .build({
+        title: 'Matrix',
+        genre: 'Action',
+        year: new Date(1999, 3, 2),
+        rating: 9
+    });
+//movie = Movie.build({});
 /* --- Define Actor Model --- */
-const Actor = sequelize.define('actors', {
-	firstName: Sequelize.STRING,
-	lastName: Sequelize.STRING
+Actor = sequelize.define('actors', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    firstName: Sequelize.STRING,
+    lastName: Sequelize.STRING
 });
-
-const actors = Actor
-	  .build({
-		  id: 0,
-		  firstName: 'Keanu',
-		  lastName: 'Reeves',
-	  });
-console.log(actors);
+//var actors = Actor.build({});
+var actors = Actor
+    .build({
+        firstName: 'Keanu',
+        lastName: 'Reeves',
+    });
+//console.log(actors);
 /* --- Define Belongs-To-Many relations for Models --- */
-// const movieActor = sequelize.define('movieActor', {
-// 	title:  Sequelize.STRING,
-// 	genre:  Sequelize.STRING,
-// 	year:   Sequelize.DATE,
-// 	rating: Sequelize.INTEGER,
-// 	actors: {
-// 		firstName: Sequelize.STRING,
-// 		lastName: Sequelize.STRING
-// 	}
-// });
-
-// const movieActors = movieActor
-// 	  .build({
-// 		  title: 'Matrix',
-// 		  genre: 'Action',
-// 		  year: new Date(1999, 3, 2),
-// 		  rating: 9,
-// 		  actors: {
-// 			  firstName: actors.firstName,
-// 			  lastName: actors.lastName
-// 		  }
-// 	  });
-
-//Movie.belongsToMany(Actor, {through: 'movieActors', otherKey: 'lastName'});
-//Actor.belongsToMany(Movie, {through: 'movieActors'});
+Movie.belongsToMany(Actor, {through: 'movieActors', otherKey: 'lastName'});
+Actor.belongsToMany(Movie, {through: 'movieActors'});
 
 //init tables or sync existing model
 sequelize.sync({ force: false });
@@ -112,44 +98,54 @@ app.get('/', function(req, res){
 /* --- get manage page "/manage" --- */
 app.get('/manage', function(req, res){
     res.render('manage.jade', {
-		"movies": movie,
-		"actors": actors
-	});
+        "movies": movie,
+        "actors": actors
+    });
 });
 
 /* --- post to "/addmovie" - render manage page --- */
 app.post('/addmovie', function(req, res){
-	var title = req.body.title;
-	var genre = req.body.genre;
-	var year  = req.body.year;
+    var title = req.body.title;
+    var genre = req.body.genre;
+    var year  = req.body.year;
 
     res.render('manage.jade', {
-		"movies": movie,
-		"actors": actors
-	});
+        "movies": movie,
+        "actors": actors
+    });
 });
 
 /* --- post to "/addactor" - render manage page --- */
 app.post('/addactor', function(req, res){
-	var firstName = req.body.firstname;
-	var lastName = req.body.lastname;
+    var firstname = req.body.firstname;
+    var lastname = req.body.lastname;
 
-    res.render('manage.jade', {
-		"movies": movie,
-		"actors": actors
-	});
+    Actor
+        .build({firstName: firstname, lastName: lastname})
+        .save()
+        .then(accessActor => {
+
+        })
+        .catch(error => {
+            console.log("/addactor failed.");
+        })
+
+			res.render('manage.jade', {
+				"movies": movie,
+				"actors": actors
+			});
 });
 
 
 /* --- post to /assignactormovie - render manage page --- */
 app.post('/assignactormovie', function(req, res){
-	var actorid = req.body.actorid;
-	var movieid = req.body.movieid;
+    var actorid = req.body.actorid;
+    var movieid = req.body.movieid;
 
     res.render('manage.jade', {
-		"movies": movie,
-		"actors": actors
-	});
+        "movies": movie,
+        "actors": actors
+    });
 });
 
 /* Init listener */
