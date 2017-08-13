@@ -95,6 +95,15 @@ app.use('/', function(req, res){
 });
 
 /* --- get manage page "/manage" --- */
+app.get('/manage', function(req, res){
+    res.render('manage.jade', {
+		"movies": movie,
+		"actors": actors
+	});
+});
+
+// get post parameters using bodyParser()
+//app.use(express.bodyParser());
 
 /* --- post to "/addmovie" - render manage page --- */
 app.post('/addmovie', function(req, res){
