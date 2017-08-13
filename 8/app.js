@@ -86,8 +86,7 @@ sequelize.sync({ force: false });
 
 /* User-Application logic entry point */
 /* --- get index "/" --- */
-app.use('/', function(req, res){
-	
+app.get('/', function(req, res){
     res.render('index.jade', {
 		"movies": movie,
 		"actors": actors
