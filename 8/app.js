@@ -26,22 +26,70 @@ var sequelize = new Sequelize('movies', null, null, {
 });
 
 /* --- Define Movie Model --- */
+const Movie = sequelize.define('movies', {
+	title:  Sequelize.STRING,
+	genre:  Sequelize.STRING,
+	year:   Sequelize.DATE,
+	rating: Sequelize.INTEGER
+});
+
+const movie = Movie
+	  .build({
+		  title: 'Matrix',
+		  genre: 'Action',
+		  year: new Date(1999, 3, 2),
+		  rating: 9
+	  });
 
 /* --- Define Actor Model --- */
+const Actor = sequelize.define('actors', {
+	firstName: Sequelize.STRING,
+	lastName: Sequelize.STRING
+});
 
+const actors = Actor
+	  .build({
+		  id: 0,
+		  firstName: 'Keanu',
+		  lastName: 'Reeves',
+	  });
+console.log(actors);
 /* --- Define Belongs-To-Many relations for Models --- */
+// const movieActor = sequelize.define('movieActor', {
+// 	title:  Sequelize.STRING,
+// 	genre:  Sequelize.STRING,
+// 	year:   Sequelize.DATE,
+// 	rating: Sequelize.INTEGER,
+// 	actors: {
+// 		firstName: Sequelize.STRING,
+// 		lastName: Sequelize.STRING
+// 	}
+// });
+
+// const movieActors = movieActor
+// 	  .build({
+// 		  title: 'Matrix',
+// 		  genre: 'Action',
+// 		  year: new Date(1999, 3, 2),
+// 		  rating: 9,
+// 		  actors: {
+// 			  firstName: actors.firstName,
+// 			  lastName: actors.lastName
+// 		  }
+// 	  });
+
+//Movie.belongsToMany(Actor, {through: 'movieActors', otherKey: 'lastName'});
+//Actor.belongsToMany(Movie, {through: 'movieActors'});
 
 //init tables or sync existing model
 sequelize.sync({ force: false });
 
 /* User-Application logic entry point */
-
 /* --- get index "/" --- */
 app.use('/', function(req, res){
-	var movies = ['test1', 'test2'];
-	var actors = ['test3', 'test4'];
+	
     res.render('index.jade', {
-		"movies": movies,
+		"movies": movie,
 		"actors": actors
 	});
 });
