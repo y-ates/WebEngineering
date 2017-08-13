@@ -105,14 +105,43 @@ app.get('/manage', function(req, res){
 
 /* --- post to "/addmovie" - render manage page --- */
 app.post('/addmovie', function(req, res){
-    var title = req.body.title;
-    var genre = req.body.genre;
-    var year  = req.body.year;
+    var title_in  = req.body.title;
+    var genre_in  = req.body.genre;
+    var year_in   = req.body.year;
+	var rating_in = req.body.rating
 
-    res.render('manage.jade', {
-        "movies": movie,
-        "actors": actors
-    });
+    Movie
+        .build({title: title_in, genre: genre_in, year: year_in,
+				rating: rating_in})
+        .save()
+        .then(accessActor => {
+
+        })
+        .catch(error => {
+            console.log("/addmovie failed.");
+        })
+	
+    Movie
+        .findAll()
+        .then(result => {
+            return result;
+        })
+        .then(function(a) {
+            var tmp_forward = [];
+            tmp_forward[0] = a;
+            Actor
+                .findAll()
+                .then(resultActor => {
+                    tmp_forward[1] = resultActor;
+                    return tmp_forward;
+                })
+                .then(function(tmp_forward) {
+                    res.render('manage.jade', {
+                        "movies": tmp_forward[0],
+                        "actors": tmp_forward[1]
+                    })
+                });
+        })
 });
 
 /* --- post to "/addactor" - render manage page --- */
