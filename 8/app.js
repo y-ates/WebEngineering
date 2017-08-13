@@ -84,13 +84,29 @@ console.log(actors);
 //init tables or sync existing model
 sequelize.sync({ force: false });
 
-/* User-Application logic entry point */
-/* --- get index "/" --- */
 app.get('/', function(req, res){
-    res.render('index.jade', {
-		"movies": movie,
-		"actors": actors
-	});
+    Movie
+        .findAll()
+        .then(result => {
+            return result;
+        })
+        .then(function(a) {
+            var tmp_forward = [];
+            tmp_forward[0] = a;
+            Actor
+                .findAll()
+                .then(resultActor => {
+                    tmp_forward[1] = resultActor;
+                    return tmp_forward;
+                })
+                .then(function(tmp_forward) {
+                    res.render('index.jade', {
+                        "movies": tmp_forward[0],
+                        "actors": tmp_forward[1]
+                    })
+                });
+        })
+
 });
 
 /* --- get manage page "/manage" --- */
