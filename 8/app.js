@@ -130,10 +130,27 @@ app.post('/addactor', function(req, res){
             console.log("/addactor failed.");
         })
 
-			res.render('manage.jade', {
-				"movies": movie,
-				"actors": actors
-			});
+    Movie
+        .findAll()
+        .then(result => {
+            return result;
+        })
+        .then(function(a) {
+            var tmp_forward = [];
+            tmp_forward[0] = a;
+            Actor
+                .findAll()
+                .then(resultActor => {
+                    tmp_forward[1] = resultActor;
+                    return tmp_forward;
+                })
+                .then(function(tmp_forward) {
+                    res.render('manage.jade', {
+                        "movies": tmp_forward[0],
+                        "actors": tmp_forward[1]
+                    })
+                });
+        })
 });
 
 
