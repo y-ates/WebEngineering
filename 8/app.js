@@ -101,9 +101,6 @@ app.get('/manage', function(req, res){
 	});
 });
 
-// get post parameters using bodyParser()
-//app.use(express.bodyParser());
-
 /* --- post to "/addmovie" - render manage page --- */
 app.post('/addmovie', function(req, res){
 	var title = req.body.title;
@@ -115,6 +112,7 @@ app.post('/addmovie', function(req, res){
 		"actors": actors
 	});
 });
+
 /* --- post to "/addactor" - render manage page --- */
 app.post('/addactor', function(req, res){
 	var firstName = req.body.firstname;
@@ -128,7 +126,15 @@ app.post('/addactor', function(req, res){
 
 
 /* --- post to /assignactormovie - render manage page --- */
+app.post('/assignactormovie', function(req, res){
+	var actorid = req.body.actorid;
+	var movieid = req.body.movieid;
 
+    res.render('manage.jade', {
+		"movies": movie,
+		"actors": actors
+	});
+});
 
 /* Init listener */
 app.listen(process.env.PORT || 8080);
