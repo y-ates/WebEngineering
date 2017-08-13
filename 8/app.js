@@ -97,7 +97,16 @@ app.use('/', function(req, res){
 /* --- get manage page "/manage" --- */
 
 /* --- post to "/addmovie" - render manage page --- */
+app.post('/addmovie', function(req, res){
+	var title = req.body.title;
+	var genre = req.body.genre;
+	var year  = req.body.year;
 
+    res.render('manage.jade', {
+		"movies": movie,
+		"actors": actors
+	});
+});
 /* --- post to "/addactor" - render manage page --- */
 
 /* --- post to /assignactormovie - render manage page --- */
