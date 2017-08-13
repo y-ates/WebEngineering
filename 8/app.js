@@ -116,6 +116,16 @@ app.post('/addmovie', function(req, res){
 	});
 });
 /* --- post to "/addactor" - render manage page --- */
+app.post('/addactor', function(req, res){
+	var firstName = req.body.firstname;
+	var lastName = req.body.lastname;
+
+    res.render('manage.jade', {
+		"movies": movie,
+		"actors": actors
+	});
+});
+
 
 /* --- post to /assignactormovie - render manage page --- */
 
