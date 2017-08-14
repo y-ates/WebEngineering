@@ -19,7 +19,7 @@ var sortable = {
     // call this function if a th is clicked. $this is supposed to be the th
     // element
     execute: function($this, index) {
-        var rows = $('table tbody tr').get();
+        var rows  = $('table tbody tr').get();
         var order = $($this).attr("class");
         console.log(order);
         var n = $($this).find("tr").length;
@@ -34,10 +34,10 @@ var sortable = {
             var A = getVal(a, (index+1));
             var B = getVal(b, (index+1));
 
-            if(A < B) {
+            if (A < B) {
                 return -1*f;
             }
-            if(A > B) {
+            if (A > B) {
                 return 1*f;
             }
 
@@ -51,7 +51,7 @@ var sortable = {
 
         function getVal(elm, index){
             var v = $(elm).children('td:nth-child(' + index + ')').eq(n).text().toLowerCase();
-            if($.isNumeric(v)){
+            if ($.isNumeric(v)) {
                 v = parseInt(v, 10);
             }
             return v;
@@ -67,7 +67,7 @@ var sortable = {
                 sortable.asc = false;
                 $(this).click(function() {
                     // switch ascending/descending state for clicked table header
-                    sortable.asc ? sortable.asc = false :sortable.asc = true;
+                    sortable.asc ? sortable.asc = false : sortable.asc = true;
                     th.removeClass('desc asc');
                     sortable.asc ? $(this).addClass('asc') : $(this).addClass('desc');
                     sortable.execute($(this), index);
