@@ -13,6 +13,7 @@ if (app.get('env') === 'development') {
 	app.locals.pretty = true;
 }
 
+
 var sequelize = new Sequelize('movies', null, null, {
 	host: 'localhost',
 	dialect: 'sqlite',
@@ -24,6 +25,7 @@ var sequelize = new Sequelize('movies', null, null, {
 	},
 	storage: 'db/movies.sqlite'
 });
+
 
 /* --- Define Movie Model --- */
 Movie = sequelize.define('movies', {
@@ -38,14 +40,7 @@ Movie = sequelize.define('movies', {
     rating: Sequelize.INTEGER
 });
 
-var movie = Movie
-    .build({
-        title: 'Matrix',
-        genre: 'Action',
-        year: new Date(1999, 3, 2),
-        rating: 9
-    });
-//movie = Movie.build({});
+
 /* --- Define Actor Model --- */
 Actor = sequelize.define('actors', {
     id: {
@@ -56,19 +51,22 @@ Actor = sequelize.define('actors', {
     firstName: Sequelize.STRING,
     lastName: Sequelize.STRING
 });
-//var actors = Actor.build({});
-var actors = Actor
-    .build({
-        firstName: 'Keanu',
-        lastName: 'Reeves',
-    });
-//console.log(actors);
+
+
 /* --- Define Belongs-To-Many relations for Models --- */
-Movie.belongsToMany(Actor, {through: 'movieActors', otherKey: 'lastName'});
-Actor.belongsToMany(Movie, {through: 'movieActors'});
+// Movie.hasMany(Actor);
+// Movie.belongsToMany(Actor, {through: 'movieActors', constraints: false});
+// Movie.find({
+// 	include: [
+// 		{model: Actor}
+// 	]
+// });
+//Actor.belongsToMany(Movie, {through: 'movieActors'});
+
 
 //init tables or sync existing model
 sequelize.sync({ force: false });
+
 
 app.get('/', function(req, res){
     Movie
@@ -92,16 +90,34 @@ app.get('/', function(req, res){
                     })
                 });
         })
-
 });
+
 
 /* --- get manage page "/manage" --- */
 app.get('/manage', function(req, res){
-    res.render('manage.jade', {
-        "movies": movie,
-        "actors": actors
-    });
+    Movie
+        .findAll()
+        .then(result => {
+            return result;
+        })
+        .then(function(a) {
+            var tmp_forward = [];
+            tmp_forward[0] = a;
+            Actor
+                .findAll()
+                .then(resultActor => {
+                    tmp_forward[1] = resultActor;
+                    return tmp_forward;
+                })
+                .then(function(tmp_forward) {
+                    res.render('manage.jade', {
+                        "movies": tmp_forward[0],
+                        "actors": tmp_forward[1]
+                    })
+                });
+        })
 });
+
 
 /* --- post to "/addmovie" - render manage page --- */
 app.post('/addmovie', function(req, res){
@@ -143,6 +159,7 @@ app.post('/addmovie', function(req, res){
                 });
         })
 });
+
 
 /* --- post to "/addactor" - render manage page --- */
 app.post('/addactor', function(req, res){
@@ -188,11 +205,29 @@ app.post('/assignactormovie', function(req, res){
     var actorid = req.body.actorid;
     var movieid = req.body.movieid;
 
-    res.render('manage.jade', {
-        "movies": movie,
-        "actors": actors
-    });
+    Movie
+        .findAll()
+        .then(result => {
+            return result;
+        })
+        .then(function(a) {
+            var tmp_forward = [];
+            tmp_forward[0] = a;
+            Actor
+                .findAll()
+                .then(resultActor => {
+                    tmp_forward[1] = resultActor;
+                    return tmp_forward;
+                })
+                .then(function(tmp_forward) {
+                    res.render('manage.jade', {
+                        "movies": tmp_forward[0],
+                        "actors": tmp_forward[1]
+                    })
+                });
+        })
 });
+
 
 /* Init listener */
 app.listen(process.env.PORT || 8080);
