@@ -10,13 +10,13 @@ request('http://aktuell.ruhr-uni-bochum.de/rss/index.rss', function (error, resp
     }
 });
 http.createServer(function(req, res) {
-    if(req.url=='/rss') {
+    if (req.url == '/rss') {
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.writeHead(200, {"Content-Type": "text/xml"});
         res.write(xml);
         res.end();
     }
-    else if(req.url=='/js') {
+    else if (req.url == '/js') {
         js = fs.readFileSync('ue4_logic.js');
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.writeHead(200, {"Content-Type": "text/javascript"});
