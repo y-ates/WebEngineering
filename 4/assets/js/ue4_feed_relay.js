@@ -22,7 +22,7 @@ http.createServer(function(req, res) {
         res.writeHead(200, {"Content-Type": "text/javascript"});
         res.end(js);
     }
-    else{
+    else {
         index = fs.readFileSync('../../ue4_index.html');
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.writeHead(200, {'Content-Type': 'text/html'});
