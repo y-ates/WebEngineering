@@ -15,7 +15,7 @@
         }
 		
         .navbar-brand {
-            float:none;
+            float: none;
         }
 		
 		.wrapper {
@@ -62,13 +62,13 @@
 		});
 
         function createField(id) {
-			var e = $( document.createElement('div') );
+			var e = $(document.createElement('div'));
 			$(e).attr('id', 'test');
 			
 			var label = $('<label>').appendTo($('#tableField'));
 			
-            $(label).addClass('box '+id);
-            $(label).attr('id','label-'+ id);
+            $(label).addClass('box ' + id);
+            $(label).attr('id','label-' + id);
 			$(label).text(id);
 
 			$(label).mouseenter(function() {
@@ -85,7 +85,7 @@
         }
 
 		function hideElement(id) {
-			var elementID = "#label-"+id;
+			var elementID     = "#label-" + id;
 			var hiddenElement = $(elementID).hide();
 		}
 		
