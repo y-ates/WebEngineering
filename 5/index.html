@@ -80,7 +80,7 @@
          }
          
          function btnClicked(inputId) {
-             if($("#commentInput-" + inputId).val()) {
+             if ($("#commentInput-" + inputId).val()) {
                  var commentText = $("#commentInput-" + inputId).val();
                  createCommentItem(inputId, commentText);
                  feed.feedItems[inputId].comments.push(new Comment(commentText));
@@ -118,7 +118,7 @@
                  'target':'_blank',
                  'href': feedItem.link ,
              });
-             var spn = $('<s pan>').appendTo($(btn));
+             var spn = $('<span>').appendTo($(btn));
              $(spn).addClass('glyphicon glyphicon-open');
              $(spn).attr('aria-hidden','true');
              var commentContainer = $('<div>').appendTo($(itemArea));
@@ -151,24 +151,6 @@
 
         <div class="container" style="padding-top: 100px;
                                       padding-bottom: 100px;" id="content">
-        <!--     <div id="commentContainer-0" class="comments panel panel-primary"> -->
-        <!--         <div class="panel-heading">Comments</div> -->
-        <!--         <div class="comment well well-sm" id="commentId-0"> -->
-        <!--             <span class="glyphicon glyphicon-comment" -->
-        <!--                   aria-hidden="true"></span> -->
-        <!--             <br> -->
-        <!--             comment 1 -->
-        <!--         </div> -->
-        <!--         <div class="comment well well-sm" id="commentId-0"> -->
-        <!--             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> -->
-        <!--             <br> -->
-        <!--             comment 2 -->
-        <!--         </div> -->
-        <!--     </div> -->
-        <!-- </div> -->
-        <!-- <div class="form-group"> -->
-        <!--     <textarea class="form-control" rows="2" id="comment" -->
-        <!--               placeholder="Your comment"></textarea> -->
         </div>
     </body>
 </html>
