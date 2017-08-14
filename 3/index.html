@@ -19,58 +19,58 @@
 
         <script>
          function solveEQ() {
-             var d = document.form1;
+             var d     = document.form1;
              var volts = d.volts.value;
-             var ohms = d.ohms.value;
-             var amps = d.amps.value;
+             var ohms  = d.ohms.value;
+             var amps  = d.amps.value;
              var watts = d.watts.value;
 
              if (volts && amps) {  // I, U
-                 watts = amps * volts;
+                 watts         = amps * volts;
                  d.watts.value = watts;
                  d.watts.classList.add("alert-success");
                  
-                 ohms = volts / amps;
+                 ohms         = volts / amps;
                  d.ohms.value = ohms;
                  d.ohms.classList.add("alert-success");
              } else if (volts && ohms) {  // U, R
-                 amps = volts / ohms;
+                 amps         = volts / ohms;
                  d.amps.value = amps;
                  d.amps.classList.add("alert-success");
                  
-                 watts = amps * volts;
+                 watts         = amps * volts;
                  d.watts.value = watts;
                  d.watts.classList.add("alert-success");                 
              } else if (volts && watts) {  // P, U
-                 amps = watts / volts;
+                 amps         = watts / volts;
                  d.amps.value = amps;
                  d.amps.classList.add("alert-success");
                  
-                 ohms = volts / amps;
+                 ohms         = volts / amps;
                  d.ohms.value = ohms;
                  d.ohms.classList.add("alert-success");                 
              } else if (amps && ohms) {  // I, R
-                 watts = amps * amps * ohms;
+                 watts         = amps * amps * ohms;
                  d.watts.value = watts;
                  d.watts.classList.add("alert-success");
                  
-                 volts = ohms * amps;
+                 volts         = ohms * amps;
                  d.volts.value = volts;
                  d.volts.classList.add("alert-success");
              } else if (amps && watts) {  // P, I
-                 volts = watts / amps;
+                 volts         = watts / amps;
                  d.volts.value = volts;
                  d.volts.classList.add("alert-success");
 
-                 ohms = volts / amps;
+                 ohms         = volts / amps;
                  d.ohms.value = ohms;
                  d.ohms.classList.add("alert-success");
              } else if (ohms && watts) {  // P, R
-                 amps = Math.sqrt(watts * ohms);
+                 amps         = Math.sqrt(watts * ohms);
                  d.amps.value = amps;
                  d.amps.classList.add("alert-success");
                  
-                 volts = ohms * amps;
+                 volts         = ohms * amps;
                  d.volts.value = volts;
                  d.volts.classList.add("alert-success");
              }
@@ -81,9 +81,9 @@
              
              d.volts.value = "0.0";
              d.volts.classList.remove("alert-success");
-             d.ohms.value = "0.0";
+             d.ohms.value  = "0.0";
              d.ohms.classList.remove("alert-success");
-             d.amps.value = "0.0";
+             d.amps.value  = "0.0";
              d.amps.classList.remove("alert-success");
              d.watts.value = "0.0";
              d.watts.classList.remove("alert-success");
