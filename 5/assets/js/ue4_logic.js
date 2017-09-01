@@ -22,6 +22,7 @@ function showRSS(xml) {
             var node = document.createElement("div");
             node.setAttribute("class", "item");
             node.setAttribute("id", "feed-"+i);
+            node.setAttribute("id", "feed-" + i);
 
             var title = document.createElement("h2");
             title.innerHTML = items[i].childNodes[1].firstChild.nodeValue;
