@@ -39,16 +39,6 @@ function showRSS(xml) {
             link.setAttribute("target", "_blank");
             link.setAttribute("href", items[i].childNodes[3].firstChild.nodeValue);
             link.innerHTML = "More";
-            node.appendChild(link);
-
-            // var commentContainer = document.createElement("div");
-            // commentContainer.setAttribute("id", "commentContainer-"+i);
-            // commentContainer.setAttribute("class", "comments panel panel-primary");
-            // var panelHeading = document.createElement("div");
-            // panelHeading.setAttribute("class", "panel-heading");
-            // commentContainer.appendChild(panelHeading);
-            
-            // node.appendChild(commentContainer);
             
             $("#content").append(node);
         }
