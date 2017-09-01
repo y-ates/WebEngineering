@@ -16,12 +16,10 @@ function getRSS() {
 function showRSS(xml) {
     var items = xml.responseXML.getElementsByTagName("item");
 
-    for (var i=0; i < items.length; i++) {
     for (var i=0; i < items.length; ++i) {
         if (items[i].childNodes) {
             var node = document.createElement("div");
             node.setAttribute("class", "item");
-            node.setAttribute("id", "feed-"+i);
             node.setAttribute("id", "feed-" + i);
 
             var title = document.createElement("h2");
@@ -39,6 +37,7 @@ function showRSS(xml) {
             link.setAttribute("target", "_blank");
             link.setAttribute("href", items[i].childNodes[3].firstChild.nodeValue);
             link.innerHTML = "More";
+            node.appendChild(link);  // Button with link to website
             
             $("#content").append(node);
         }
