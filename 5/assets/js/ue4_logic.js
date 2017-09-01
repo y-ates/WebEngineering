@@ -17,6 +17,7 @@ function showRSS(xml) {
     var items = xml.responseXML.getElementsByTagName("item");
 
     for (var i=0; i < items.length; i++) {
+    for (var i=0; i < items.length; ++i) {
         if (items[i].childNodes) {
             var node = document.createElement("div");
             node.setAttribute("class", "item");
